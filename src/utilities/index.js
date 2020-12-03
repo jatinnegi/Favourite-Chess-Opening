@@ -17,15 +17,19 @@ export const getFavouriteOpening = (username) => {
           const games = data.games;
 
           for (let i = games.length - 1; i >= 0; i--) {
-            if (games[i].pgn.includes(`[White "${username}"]`)) {
-              let move = "";
-              let index = games[i].pgn.match(/1\. /).index;
-              move += games[i].pgn[index + 3];
-              move += games[i].pgn[index + 4];
-              if (games[i].pgn[index + 5] !== " ")
-                move += games[i].pgn[index + 5];
+            try {
+              if (games[i].pgn.includes(`[White "${username}"]`)) {
+                let move = "";
+                let index = games[i].pgn.match(/1\. /).index;
+                move += games[i].pgn[index + 3];
+                move += games[i].pgn[index + 4];
+                if (games[i].pgn[index + 5] !== " ")
+                  move += games[i].pgn[index + 5];
 
-              openings.push(move);
+                openings.push(move);
+              }
+            } catch (error) {
+              console.error(error);
             }
           }
           var map = {};
