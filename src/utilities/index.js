@@ -45,7 +45,7 @@ export const getFavouriteOpening = (username) => {
             if (favouriteOpening === undefined) {
               alert("No games found");
             } else {
-              alert(favouriteOpening);
+              alert(`${favouriteOpening} (${mostFrequentElement})`);
             }
           }
           findMostFrequent();
